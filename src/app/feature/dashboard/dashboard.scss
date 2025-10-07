@@ -1,0 +1,19 @@
+.dashboard-container {
+  padding: 1rem;
+
+  .metrics {
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+  }
+
+  .chart-container {
+    max-width: 500px;
+    margin: auto;
+  }
+
+  @media (max-width: 600px) {
+    .chart-container {
+      max-width: 100%;
+    }
+  }
+}

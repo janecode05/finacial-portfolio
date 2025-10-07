@@ -1,0 +1,51 @@
+<form [formGroup]="investmentForm" (ngSubmit)="onSubmit()">
+
+  <div>
+    <label for="assetType">Asset Type</label>
+    <select id="assetType" formControlName="assetType">
+      <option value="" disabled>Select asset type</option>
+      <option value="stocks">Stocks</option>
+      <option value="bonds">Bonds</option>
+      <option value="mutualFunds">Mutual Funds</option>
+      <option value="realEstate">Real Estate</option>
+    </select>
+    <div *ngIf="investmentForm.get('assetType')?.invalid && investmentForm.get('assetType')?.touched">
+      Asset type is required.
+    </div>
+  </div>
+
+  <div>
+    <label for="quantity">Quantity</label>
+    <input id="quantity" type="number" formControlName="quantity" />
+    <div *ngIf="investmentForm.get('quantity')?.invalid && investmentForm.get('quantity')?.touched">
+      Quantity is required and must be at least 1.
+    </div>
+  </div>
+
+  <div>
+    <label for="purchasePrice">Purchase Price</label>
+    <input id="purchasePrice" type="number" step="0.01" formControlName="purchasePrice" />
+    <div *ngIf="investmentForm.get('purchasePrice')?.invalid && investmentForm.get('purchasePrice')?.touched">
+      Purchase price is required and must be a positive number.
+    </div>
+  </div>
+
+  <div>
+    <label for="purchaseDate">Purchase Date</label>
+    <input id="purchaseDate" type="date" formControlName="purchaseDate" />
+    <div *ngIf="investmentForm.get('purchaseDate')?.invalid && investmentForm.get('purchaseDate')?.touched">
+      Purchase date is required.
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="investmentForm.invalid">Submit</button>
+
+</form>
+
+<div *ngIf="investmentForm.valid">
+  <h3>Review Your Input:</h3>
+  <p>Asset Type: {{ investmentForm.value.assetType }}</p>
+  <p>Quantity: {{ investmentForm.value.quantity }}</p>
+  <p>Purchase Price: ₹{{ investmentForm.value.purchasePrice }}</p>
+  <p>Purchase Date: {{ investmentForm.value.purchaseDate | date }}</p>
+</div>
